@@ -7,7 +7,7 @@
        <h1><b>ENG0018 Computer Laboratory 2026/27</b><h1>
        <h2>Student URN: 6979090</h2>
      <hr>
-     <h2 style="font-family:calibri;"><b>Conference paper: Bridge Deck Repairs    </b></h2>
+     <h2 style="font-family:calibri;"><b>Conference paper: Bridge Deck Repairs  </b></h2>
      <hr>
 
          <!style for tables>
@@ -48,11 +48,11 @@
   </style>
          <body style="background-color:#FFFFFF;margin-left:50px;">
 
-
-<div id="Abstract">
-  <h3>"Abstract"</h3>
+           
+  <h3 id="Abstract">Absract</h3>
+  <pre id ="Abstract_InText">
            This is my abstract section
-</div>
+  </pre>
 <hr>
            
    <!table of contents>
@@ -73,19 +73,22 @@
    </tr>
 </table>
 
-<div id="Introduction">
-  <h3>Introduction</h3>
+  <h3 id="Introduction">Introduction</h3>
+  <pre id="Introduction_InText">
            This is my introduction section
-</div>
+  </pre>
 <hr>
- <div id="Analysis">
-   <h3>Analysis</h3>
+ 
+   <h3 id="Analysis">Analysis</h3>
+   <pre id="Analysis_InText">
            This is my analysis
- </div>
+ </pre>
    <hr>
 
   <h3 id="Reference">Reference</h3>
+      <pre id="Reference_InText">
            This is my reference section
+      <pre/>
 <hr>
 
    <!-- //////////////////////////////////////////////////////////////////////////////// -->
@@ -134,7 +137,7 @@
         alert("Last modified time has been successfully verified from GitHub API.");
     }
     // Initial load to display the time on page load
-    window.addEventListener('load', getLastUpdatedTime);
+    window.onload = getLastUpdatedTime;
 </script>
 
 
@@ -145,31 +148,32 @@
 <p id="totalWordCount"></p>
 <hr>
 <script>
-  function displayWordCount(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (!section) return 0;
-
-    const text = section.textContent || '';
-    const wordArray = text.trim().split(/\s+/).filter(Boolean);
-    return wordArray.length;
+  // Function to calculate and display word count for a specified section
+  function displayWordCount(sectionId, outputId) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+    // Count the words
+    const wordCount = wordArray.length;
+    // Return the word count for summing purposes
+    return wordCount;
   }
-
+  // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
-    const abstractCount = displayWordCount("Abstract");
-    const introductionCount = displayWordCount("Introduction");
-    const analysisCount = displayWordCount("Analysis");
-    const totalWordCount = abstractCount + introductionCount + analysisCount;
-
-    const output = document.getElementById("totalWordCount");
-    if (output) {
-      output.innerText = `Total word count: ${totalWordCount}`;
-    }
+    // Calculate word count for each section and accumulate the total
+    const AbstractCount = displayWordCount("Abstract");
+    const IntroductionCount = displayWordCount("Introduction");
+    const AnalysisCount = displayWordCount("Analysis");
+    // Calculate the sum of all selected sections
+    const totalWordCount = Abstractcount + IntroductionCount + AnalysisCount;
+    // Display the total word count
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
-
-  window.addEventListener('load', displayTotalWordCount);
+  // Run the function for specific sections and display total count when the page loads
+  window.onload = displayTotalWordCount;
 </script>        
 
           
 </html>
-  
  
